@@ -16,30 +16,42 @@ public abstract class BaseRepositoryImpl<E extends BaseEntity<ID>,ID extends Ser
     }
 
     @Override
-    public BaseEntity save(BaseEntity entity) {
+    public E save(E entity) {
         session.getTransaction().begin();
         session.persist(entity);
         session.getTransaction().commit();
-        return null;
+        return entity;
     }
 
     @Override
-    public BaseEntity update(BaseEntity entity) {
-        return null;
+    public E update(E entity) {
+            session.getTransaction().begin();
+            session.merge(entity);
+            session.getTransaction().commit();
+            return entity;
     }
 
     @Override
-    public List findAll() {
-        return null;
+    public List<E> findAll() {
+        List<E> ans = session.createQuery("from "+ getEntityClass().getSimpleName(),getEntityClass()).getResultList();
+        return ans;
+    }
+    public abstract Class<E> getEntityClass();
+
+    @Override
+    public Optional<E> findById(ID id) {
+
+        E ans = session.createQuery("FROM "+ getEntityClass().getSimpleName() +" E where E.id = : id",
+                                            getEntityClass()).setParameter("id",id).getSingleResult();
+
+
+        return Optional.ofNullable(ans);
     }
 
     @Override
-    public Optional findById(Serializable serializable) {
-        return Optional.empty();
-    }
-
-    @Override
-    public void remove(BaseEntity entity) {
-
+    public void remove(E entity) {
+        session.getTransaction().begin();
+        session.remove(entity);
+        session.getTransaction().commit();
     }
 }

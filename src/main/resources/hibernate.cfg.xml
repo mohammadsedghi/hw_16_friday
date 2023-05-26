@@ -25,8 +25,9 @@
         <property name="use_sql_comments">true</property>
 
         <property name="show_sql">true</property>
+        <mapping class="Base.entity.Item"/>
 
-        <mapping class=""/>
+
 
     </session-factory>
 
