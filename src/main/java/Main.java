@@ -1,12 +1,7 @@
-import Base.entity.Item;
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
-
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -47,13 +42,13 @@ public class Main {
 //        session.createQuery(criteriaUpdate).executeUpdate();
 //        transaction.commit();
 
-        CriteriaDelete<Item> criteriaDelete = cb.createCriteriaDelete(Item.class);
-        Root<Item> root = criteriaDelete.from(Item.class);
-        criteriaDelete.where(cb.greaterThan(root.get("itemPrice"), 12000));
-
-        Transaction transaction = session.beginTransaction();
-        session.createQuery(criteriaDelete).executeUpdate();
-        transaction.commit();
+//        CriteriaDelete<Item> criteriaDelete = cb.createCriteriaDelete(Item.class);
+//        Root<Item> root = criteriaDelete.from(Item.class);
+//        criteriaDelete.where(cb.greaterThan(root.get("itemPrice"), 12000));
+//
+//        Transaction transaction = session.beginTransaction();
+//        session.createQuery(criteriaDelete).executeUpdate();
+//        transaction.commit();
 
 
 

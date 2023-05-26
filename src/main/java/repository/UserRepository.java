@@ -2,10 +2,7 @@ package repository;
 
 import Base.repository.BaseRepository;
 import Base.repository.impl.BaseRepositoryImpl;
-import entity.Teacher;
+import entity.User;
 
-public interface TeacherRepository extends BaseRepository<Teacher,Long> {
-
-
-
+public interface UserRepository extends BaseRepository<User,Long> {
 }

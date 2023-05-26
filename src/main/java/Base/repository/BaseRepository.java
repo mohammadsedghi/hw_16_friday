@@ -1,9 +1,7 @@
 package Base.repository;
 
 import Base.entity.BaseEntity;
-import Base.entity.User;
 
-import javax.swing.text.html.parser.Entity;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;

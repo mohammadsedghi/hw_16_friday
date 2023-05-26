@@ -18,4 +18,5 @@ public abstract class BaseEntity< ID extends Serializable> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ID id;
 
+
 }
