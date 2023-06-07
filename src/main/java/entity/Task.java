@@ -3,11 +3,10 @@ package entity;
 
 import Base.entity.BaseEntity;
 import entity.util.TaskStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.time.LocalDate;
 
@@ -15,7 +14,8 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @Entity
-
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Task extends BaseEntity<Long> {
     private String description;
     String title;
@@ -31,7 +31,6 @@ public class Task extends BaseEntity<Long> {
                 "id: "+getId()+ '\'' +
                 "task='" + description + '\'' +
                 ", title='" + title + '\'' +
-                ", user=" + user.getUsername()+
                 ", taskStatus=" + taskStatus +
                 ", deadline=" + deadline +
                 "} " ;

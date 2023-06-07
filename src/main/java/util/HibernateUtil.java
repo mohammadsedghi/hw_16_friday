@@ -1,7 +1,9 @@
 package util;
 
+import jakarta.persistence.Cacheable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;

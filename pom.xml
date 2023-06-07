@@ -17,9 +17,14 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>6.2.2.Final</version>
+            <version>6.1.7.Final</version>
         </dependency>
-
+        <!-- Hibernate EHCache API -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>5.6.15.Final</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -32,7 +37,49 @@
             <artifactId>postgresql</artifactId>
             <version>42.6.0</version>
         </dependency>
+        <!-- EHCache Core APIs -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
 
+        <!-- EHCache uses slf4j for logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.directory.server</groupId>
+                    <artifactId>apacheds-all</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.transaction/jta -->
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+            <dependency>
+                <groupId> org.apache.cassandra</groupId>
+                <artifactId>cassandra-all</artifactId>
+                <version>4.0.8</version>
+
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+
+            </dependency>
 
     </dependencies>
 

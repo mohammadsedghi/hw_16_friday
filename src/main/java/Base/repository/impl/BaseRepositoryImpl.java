@@ -41,12 +41,7 @@ public abstract class BaseRepositoryImpl<E extends BaseEntity<ID>,ID extends Ser
 
     @Override
     public Optional<E> findById(ID id) {
-
-       // E ans = session.createQuery("FROM "+ getEntityClass().getSimpleName() +" E where E.id =:id", getEntityClass()).setParameter("id",id).getSingleResult();
-   //    session.find(getEntityClass(),1l);
-
-       // return Optional.ofNullable(ans);
-        return Optional.ofNullable(session.find(getEntityClass(),1l));
+        return Optional.ofNullable(session.find(getEntityClass(),id));
     }
 
     @Override
@@ -56,3 +51,7 @@ public abstract class BaseRepositoryImpl<E extends BaseEntity<ID>,ID extends Ser
         session.getTransaction().commit();
     }
 }
+// E ans = session.createQuery("FROM "+ getEntityClass().getSimpleName() +" E where E.id =:id", getEntityClass()).setParameter("id",id).getSingleResult();
+//    session.find(getEntityClass(),1l);
+
+// return Optional.ofNullable(ans);

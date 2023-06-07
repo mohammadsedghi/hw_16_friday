@@ -2,17 +2,19 @@ package repository.Impl;
 
 import Base.repository.impl.BaseRepositoryImpl;
 import entity.Task;
+import jakarta.persistence.Cacheable;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import repository.TaskRepository;
 
 import java.util.List;
 
 public class TaskRepositoryImpl extends BaseRepositoryImpl<Task,Long>implements TaskRepository {
-   private Session session;
+   private final Session session;
     public TaskRepositoryImpl(Session session) {
         super(session);
         this.session=session;
@@ -31,8 +33,7 @@ public class TaskRepositoryImpl extends BaseRepositoryImpl<Task,Long>implements 
                 cb.asc(root.get("deadline")),
                 cb.desc(root.get("title")));
         TypedQuery<Task> query = session.createQuery(cr);
-        List<Task> results = query.getResultList();
-        return results;
+        return query.getResultList();
     }
 
 

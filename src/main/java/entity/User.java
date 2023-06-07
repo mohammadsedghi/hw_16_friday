@@ -1,15 +1,15 @@
 package entity;
 
 import Base.entity.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.cache.spi.RegionFactory;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Setter
@@ -18,16 +18,20 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "admin")
-public class User extends BaseEntity<Long> {
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+public class User extends BaseEntity<Long>{
 
 
     private String username;
     private String password;
+
+
     @OneToMany(mappedBy = "user")
    private List<Task> tasks;
 
 
     public String toString() {
-        return "User(username=" + this.getUsername() + ", password=" + this.getPassword() + ", tasks=" + this.getTasks() + ")";
+        return "User(username=" + this.getUsername() + ", password=" + this.getPassword() + ")";
     }
 }
